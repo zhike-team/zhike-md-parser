@@ -1,10 +1,14 @@
 {
-  "name": "md-parser",
+  "name": "zhikemd-parser",
   "version": "1.0.0",
   "description": "题库自定义md格式解析",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sulv/zhikemd-parser.git"
   },
   "author": "sulv",
   "license": "ISC"
