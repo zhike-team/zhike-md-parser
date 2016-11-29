@@ -8,8 +8,9 @@ markdown自定义标签及规则参考产品整理的文件
 
 const MDParser = require('zhikemd-parser');
 const mdParser = new MDParser();
-let str = '{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tutor and a student{{end}}{{trans}}{{end}}{{end}}';
-let mdArray = mdParser.parse(str);
+let str = '{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tutor and a student{{end}}'
+ + '{{raw}}__You will hear a tutor and a student{{end}}{{trans}}{{end}}{{raw}}__You will hear a tutor and a student{{end}}{{end}}';
+let mdArray = mdParser.parse(str, true);
 
 ```
 
@@ -21,3 +22,18 @@ let mdArray = mdParser.parse(str);
     trans: '' } ]
 
 ```
+
+## api
+
+### mdParser.parse(mdStr, isCombine, toHtml);
+
+#### params
+
++ mdStr md的字符串
++ isCombine 是否合并 
++ toHtml 是否转为html todo 
+
+
+
+
+

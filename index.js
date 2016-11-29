@@ -35,11 +35,12 @@ MDParser.prototype = {
 		return this.mdArr;
 	},
 
+	//解析原始字符串
 	getArrayData: function(mdStr){
 		let symbolIndex = new RegExp('{{(.*?)}}');
 		let strResult = mdStr.match(symbolIndex);
 		if (!strResult) {
-			this.mdArr.push({text: mdStr});
+			this.mdArr.push({raw: mdStr});
 			return;
 		}
 
@@ -74,6 +75,7 @@ MDParser.prototype = {
 		}
 	},
 
+	//解析时间 second
 	timeParser: function (text) {
 		return {
 			start: text.split('/')[0]*1,
@@ -124,6 +126,7 @@ MDParser.prototype = {
 		}
 	},
 
+  //合并raw
 	rawCombine: function (mdArr) {
 		let start, end, raw = '', trans = '';
 		mdArr.forEach(function(m){
@@ -131,7 +134,7 @@ MDParser.prototype = {
 			end = end ? m.end - end > 0 ? m.end : end : m.end;
 			raw += m.raw || '';
 			trans += m.trans || '';
-		})
+		});
 		return {start, end, raw, trans};
 	}
 }
