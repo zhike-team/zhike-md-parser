@@ -40,7 +40,9 @@ MDParser.prototype = {
 		let symbolIndex = new RegExp('{{(.*?)}}');
 		let strResult = mdStr.match(symbolIndex);
 		if (!strResult) {
-			this.mdArr.push({raw: mdStr});
+			if (mdStr.trim()){
+				this.mdArr.push({raw: mdStr});
+			}
 			return;
 		}
 
@@ -122,6 +124,9 @@ MDParser.prototype = {
 				rawObj.trans = rawArray[i].text;
 				this.mdArr.push(rawObj);
 				rawObj = {};
+			}
+			if (i === rawArray.length - 1){
+				this.mdArr.push(rawObj);
 			}
 		}
 	},
