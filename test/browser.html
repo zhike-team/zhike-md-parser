@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <textarea name="input-str" cols="200" rows="30"></textarea>
+  <button id="convert">转换</button>
+  <button id="back">恢复</button>
+</body>
+<script src="../index.js"></script>
+<script>
+  var parser = new MDParser();
+  var str = "{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tutor and a student discussing a project the student is working on.__{{end}}\n{{time}}6.01/10.26{{end}}\n{{raw}} __First, you have some time to look at Questions 21 to 27.__{{end}}\n{{end}}\n{{paragraph}}\n{{time}}50.33/58.81{{end}}\n{{raw}}**Tutor**: Right Stewart," +
+    " well I've read your draft report on your work placement at the Central Museum Association.{{end}}\n{{time}}59.37/65.33{{end}}\n{{raw}} Sounds as if you had an interesting time. So you ended up making a film for them?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}65.37/76.03{{end}}\n{{raw}}**Stewart**: Yeah. It was a film to train the employees in " +
+    "different museums in the techniques they should use for labelling ancient objects without damaging them.{{end}}\n{{time}}76.46/78.49{{end}}\n{{raw}} Some of them are really fragile.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}78.59/85.08{{end}}\n{{raw}}**Tutor**: OK. So in your report you go through the main stages in making the film.{{end}}\n{{time}}" +
+    "85.76/88.56{{end}}\n{{raw}} Let's discuss that in a little more detail.{{end}}\n{{time}}89.23/92.93{{end}}\n{{raw}} You had to find a location - somewhere to shoot the film.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}93.06/102.16{{end}}\n{{raw}}**Stewart**: That took quite a few days, because I had to look at different museums all over the country," +
+    " but I'd allowed time for it.{{end}}\n{{time}}102.63/110.08{{end}}\n{{raw}} And even though it was the middle of winter, there wasn't any snow, so I didn't have any transport problems.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}110.25/115.20{{end}}\n{{raw}}**Tutor**: Right. Did you have to decide what equipment you'd need for the filming?{{end}}\n{{end}}" +
+    "\n{{paragraph}}\n{{time}}115.37/120.36{{end}}\n{{raw}}**Stewart**: Yes. I think they were quite surprised at how well I managed that.{{end}}\n{{time}}120.93/127.25{{end}}\n{{raw}} It was just the luck of the draw actually, I'd done that project with you last year...{{end}}\n{{end}}\n{{paragraph}}\n{{time}}127.25/129.43{{end}}\n{{raw}}**Tutor**: Oh, " +
+    "on recording technology?{{end}}\n{{time}}129.85/132.94{{end}}\n{{raw}} So you knew a bit about it from that, right.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}132.94/138.92{{end}}\n{{raw}}**Stewart**: Yeah. What I found really hard was actually writing the script.{{end}}\n{{time}}139.40/144.32{{end}}\n{{raw}} I had a deadline for that but the Association " +
+    "had to extend it.{{end}}\n{{time}}144.74/146.55{{end}}\n{{raw}} I couldn't have done it otherwise.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}146.96/149.79{{end}}\n{{raw}}**Tutor**: Would it have helped if you'd had some training there?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}150.09/153.59{{end}}\n{{raw}}**Stewart**: I think you're right, I probably needed " +
+    "that, yeah.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}153.84/164.12{{end}}\n{{raw}}**Tutor**: Right. Now from your draft report it sounds as if you had one or two problems deciding who was going to actually appear in the video.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}164.24/165.77{{end}}\n{{raw}}**Stewart**: The casting? Yeah.{{end}}\n{{time}}166.52/173.06" +
+    "{{end}}\n{{raw}} I'd expected that the people who worked for the Association would be really keen on taking part...{{end}}\n{{end}}\n{{paragraph}}\n{{time}}173.06/174.19{{end}}\n{{raw}}**Tutor**: But they weren't?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}174.30/177.89{{end}}\n{{raw}}**Stewart**: The thing was, they were all so busy.{{end}}\n{{time}}" +
+    "178.34/181.15{{end}}\n{{raw}} And it did mean some of them had to travel.{{end}}\n{{time}}181.56/187.58{{end}}\n{{raw}} But Janice King, who I was reporting to for the project, she was great.{{end}}\n{{time}}188.05/192.66{{end}}\n{{raw}} She arranged for people to have time off and for their work to be covered.{{end}}\n{{time}}192.98/195.02{{end}}\n{{raw}}" +
+    " So that was a big help for me.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}195.13/199.19{{end}}\n{{raw}}**Tutor**: Right. And it sounds like the filming itself went well.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}199.58/205.47{{end}}\n{{raw}}**Stewart**: I gather you found a company who provided an online introduction to the techniques.{{end}}\n{{end}}\n{{paragraph}}" +
+    "\n{{time}}205.50/209.93{{end}}\n{{raw}}**Stewart**: Yeah. It was really informative, and very user-friendly.{{end}}\n{{time}}210.28/211.68{{end}}\n{{raw}} I learned a lot from it.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}211.99/213.25{{end}}\n{{raw}}**Tutor**: And then the editing?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}213.99/232.00{{end}}\n{{raw}}**Stewart**:" +
+    " For that, the Association put me in touch with someone who works for one of the big movie companies and I went down to the studio and sat with him in front of his computer for a day, learning how to cut and paste, and deal with the soundtrack and so on.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}232.30/233.57{{end}}\n{{raw}}**Tutor**: So was that all?{{end}}\n{{end}}" +
+    "\n{{paragraph}}\n{{time}}233.82/244.03{{end}}\n{{raw}}**Stewart**: No, I didn't include this in my draft report but I had to design the cover for the DVD as well, the lettering and everything.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}244.38/247.69{{end}}\n{{raw}}**Tutor**: Have you done any of that sort of design work before?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}" +
+    "247.95/264.02{{end}}\n{{raw}}**Stewart**: No, but I did a rough draft and then talked it through with a couple of my mates and they gave me some more ideas, and when I'd finished it, I showed it to the people who worked at the Association and they really liked it.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}264.08/265.13{{end}}\n{{raw}}**Tutor**: Excellent.{{end}}\n" +
+    "{{end}}\n{{paragraph}}\n{{time}}280.13/283.60{{end}}\n{{raw}}__Now listen and answer Questions 28 to 30.__{{end}}\n{{end}}\n{{paragraph}}\n{{time}}285.24/298.13{{end}}\n{{raw}}**Tutor**: Now as well as your own draft report, I've also received some written evaluation from the Association on the work you did during your placement, and how it was of benefit to them." +
+    "{{end}}\n{{time}}298.60/303.17{{end}}\n{{raw}} I noticed that you haven't included anything on that in your report yet.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}303.69/307.47{{end}}\n{{raw}}**Stewart**: How my project benefited the Association, you mean?{{end}}\n{{time}}307.51/310.23{{end}}\n{{raw}} So do I have to include that?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}" +
+    "310.26/310.96{{end}}\n{{raw}}**Tutor**: Yes.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}311.93/321.76{{end}}\n{{raw}}**Stewart**: Well, let's think... I suppose if I hadn't made the film for them, they'd have had to get an outside company to do it.{{end}}\n{{time}}322.32/330.34{{end}}\n{{raw}} But because I was actually working for the Association, I'd got much more of a" +
+    " feeling for what their aims are.{{end}}\n{{time}}330.76/335.63{{end}}\n{{raw}} Things like their responsibility for the conservation of the exhibits.{{end}}\n{{time}}336.22/342.84{{end}}\n{{raw}} I don't think an outside company would have had that understanding, they'd have been more detached.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}342.94/353.28{{end}}\n{{raw}}**Tutor**:" +
+    " Right. And the Association also said that because of your background, you had a good idea of where to go to get the best deal for the equipment you needed.{{end}}\n{{time}}353.85/360.88{{end}}\n{{raw}} They said the saving in expense made it worthwhile even though sourcing it took quite a bit of time.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}360.88/361.96{{end}}\n{{raw}}**Stewart**:" +
+    " Yes, that's true.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}362.47/370.53{{end}}\n{{raw}}**Tutor**: The Association also said making the film had a very positive effect in getting staff to work together more closely.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}370.65/373.80{{end}}\n{{raw}}**Stewart**: Oh. I hadn't heard that. That's good.{{end}}\n{{time}}374.49/385.04{{end}}\n{{raw}} " +
+    "And certainly, people weren't afraid to tell me what they thought about it as I was making it, so I was able to get lots of feedback at every stage.{{end}}\n{{time}}385.56/391.56{{end}}\n{{raw}} That was useful for me but it also meant the final product worked better for them.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}392.21/394.56{{end}}\n{{raw}}**Tutor**: Can you think of any other" +
+    " benefits?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}395.25/401.35{{end}}\n{{raw}}**Stewart**: Well, I don't think they'd really thought out what they'd do with the film once it was made.{{end}}\n{{time}}401.88/410.37{{end}}\n{{raw}} I made quite a few suggestions for the distribution - other people we could send it to as well as museum staff.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}" +
+    "410.49/419.18{{end}}\n{{raw}}**Tutor**: Yes, they mentioned that. OK, good, well it sounds like they certainly...{{end}}\n{{end}}\n{{paragraph}}\n{{time}}419.18/421.16{{end}}\n{{raw}}__That is the end of Section 3.__{{end}}\n{{time}}421.77/424.54{{end}}\n{{raw}}__ You now have half a minute to check your answers.__{{end}}\n{{end}}";
+
+
+    document.querySelector('[name=input-str]').value = str;
+
+    document.querySelector('#convert').addEventListener('click', function(e) {
+      var ret = parser.parse(str);
+      document.querySelector('[name=input-str]').value = JSON.stringify(ret);
+      try {
+        console.table(ret);
+      } catch(err) {
+        console.log(ret);
+      }
+    });
+
+    document.querySelector('#back').addEventListener('click', function(e) {
+      document.querySelector('[name=input-str]').value = str;
+    });
+</script>
+</html>
