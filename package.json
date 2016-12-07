@@ -1,6 +1,6 @@
 {
   "name": "zhikemd-parser",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "题库自定义md格式解析",
   "main": "index.js",
   "scripts": {
