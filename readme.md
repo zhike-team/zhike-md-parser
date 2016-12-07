@@ -3,7 +3,7 @@
 markdown自定义标签及规则参考产品整理的文件
 
 ## Demo 
-###test in node
+### use node
 
 ```js
 
@@ -13,22 +13,19 @@ let str = '{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tut
  + '{{raw}}__You will hear a tutor and a student{{end}}{{trans}}{{end}}{{raw}}__You will hear a tutor and a student{{end}}{{end}}';
 let mdArray = mdParser.parse(str, true, true);
 
-```
-
-### result 
-```json
+result:
 [ { start: 0.34,
     end: 5.17,
     raw: '__You will hear a tutor and a student',
     trans: '' } ]
+```
 
+### use browser 
 ```
-### test in browser 
-```
-cd zhike-md-parser 
-npm i 
-node test/server
-localhost:8888/browser.html
+step: cd zhike-md-parser 
+      npm i 
+      node test/server
+usage: http://localhost:8888/browser.html
 ```
 ## api
 
