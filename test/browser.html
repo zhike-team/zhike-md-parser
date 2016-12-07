@@ -4,10 +4,39 @@
   <meta charset="UTF-8">
   <title>Document</title>
 </head>
+<style>
+  .md{
+    float: left;
+    width: 45%;
+  }
+  .show{
+    float: right;
+    width: 45%;
+  }
+  .control{
+    float: left;
+    width: 5%;
+    margin: 200px 25px;
+  }
+  button{
+    float: left;
+    width: 80px;
+  }
+  textarea{
+    width: 100%;
+  }
+</style>
 <body>
-  <textarea name="input-str" cols="200" rows="30"></textarea>
-  <button id="convert">转换</button>
-  <button id="back">恢复</button>
+<div class="md">
+  <textarea name="input-str" cols="200" rows="40"></textarea>
+</div>
+<div class="control">
+  <button id="convertToMd">TOMD</button>
+  <button id="convertToHTML">TOHTML</button>
+</div>
+<div class="show">
+  <textarea name="output-str" cols="200" rows="40"></textarea>
+</div>
 </body>
 <script src="../index.js"></script>
 <script>
@@ -39,20 +68,41 @@
     "410.49/419.18{{end}}\n{{raw}}**Tutor**: Yes, they mentioned that. OK, good, well it sounds like they certainly...{{end}}\n{{end}}\n{{paragraph}}\n{{time}}419.18/421.16{{end}}\n{{raw}}__That is the end of Section 3.__{{end}}\n{{time}}421.77/424.54{{end}}\n{{raw}}__ You now have half a minute to check your answers.__{{end}}\n{{end}}";
 
 
-    document.querySelector('[name=input-str]').value = str;
+  document.querySelector('[name=input-str]').value = str;
 
-    document.querySelector('#convert').addEventListener('click', function(e) {
-      var ret = parser.parse(str);
-      document.querySelector('[name=input-str]').value = JSON.stringify(ret);
-      try {
-        console.table(ret);
-      } catch(err) {
-        console.log(ret);
+  document.querySelector('#convertToMd').addEventListener('click', function (e) {
+    str = document.querySelector('[name=input-str]').value;
+    let pDiv = document.getElementsByClassName('show')[0];
+    while (pDiv.hasChildNodes()){
+      pDiv.removeChild(pDiv.firstChild);
+    }
+    try{
+      let ret = parser.parse(str);
+      if (!document.querySelector('[name=output-str]')){
+        let div = document.createElement('textarea');
+        div.cols = 200;
+        div.rows = 40;
+        div.name = 'output-str';
+        pDiv.appendChild(div)
       }
-    });
+      document.querySelector('[name=output-str]').value = JSON.stringify(ret, undefined, 2);
+    }catch(e){
+      document.querySelector('[name=output-str]').value = e;
+    }
+  });
 
-    document.querySelector('#back').addEventListener('click', function(e) {
-      document.querySelector('[name=input-str]').value = str;
-    });
+  document.querySelector('#convertToHTML').addEventListener('click', function (e) {
+    let ret = parser.parse(str, false, true);
+    let pDiv = document.getElementsByClassName('show')[0];
+    while (pDiv.hasChildNodes()){
+      pDiv.removeChild(pDiv.firstChild);
+    }
+    for (let i = 0; i < ret.length; i++) {
+      let div = document.createElement('div');
+      div.innerHTML = ret[i].raw;
+      pDiv.appendChild(div);
+    }
+  });
+
 </script>
 </html>

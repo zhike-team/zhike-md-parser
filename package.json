@@ -1,10 +1,11 @@
 {
   "name": "zhikemd-parser",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "题库自定义md格式解析",
   "main": "index.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "rollup": "rollup lib/zhikeMd.js -f umd -n MDParser -o index.js"
   },
   "repository": {
     "type": "git",

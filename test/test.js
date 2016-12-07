@@ -32,5 +32,5 @@ let str = "{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tut
 	"410.49/419.18{{end}}\n{{raw}}**Tutor**: Yes, they mentioned that. OK, good, well it sounds like they certainly...{{end}}\n{{end}}\n{{paragraph}}\n{{time}}419.18/421.16{{end}}\n{{raw}}__That is the end of Section 3.__{{end}}\n{{time}}421.77/424.54{{end}}\n{{raw}}__ You now have half a minute to check your answers.__{{end}}\n{{end}}";
 let mdParser = new MDParser();
 // str  = 'sss{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{end}}';
-let ret = mdParser.parse(str);
+let ret = mdParser.parse(str, false, true);
 console.log(ret);
