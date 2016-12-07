@@ -1,6 +1,6 @@
 {
   "name": "zhike-md-parser",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "题库自定义md格式解析",
   "main": "index.js",
   "scripts": {
