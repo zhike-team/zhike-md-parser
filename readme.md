@@ -25,7 +25,7 @@ let mdArray = mdParser.parse(str, true, true);
 ```
 ### test in browser 
 ```
-cd zhikemd-parser 
+cd zhike-md-parser 
 npm i 
 node test/server
 localhost:8888/browser.html
