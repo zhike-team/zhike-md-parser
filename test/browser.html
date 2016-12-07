@@ -32,6 +32,7 @@
 </div>
 <div class="control">
   <button id="convertToMd">TOMD</button>
+  <button id="combine">COMBINE</button>
   <button id="convertToHTML">TOHTML</button>
 </div>
 <div class="show">
@@ -40,7 +41,7 @@
 </body>
 <script src="../index.js"></script>
 <script>
-  var parser = new MDParser();
+  var parser = new MDParser({cdnCommon: 'http://hq-static.smartstudy.com'});
   var str = "{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tutor and a student discussing a project the student is working on.__{{end}}\n{{time}}6.01/10.26{{end}}\n{{raw}} __First, you have some time to look at Questions 21 to 27.__{{end}}\n{{end}}\n{{paragraph}}\n{{time}}50.33/58.81{{end}}\n{{raw}}**Tutor**: Right Stewart," +
     " well I've read your draft report on your work placement at the Central Museum Association.{{end}}\n{{time}}59.37/65.33{{end}}\n{{raw}} Sounds as if you had an interesting time. So you ended up making a film for them?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}65.37/76.03{{end}}\n{{raw}}**Stewart**: Yeah. It was a film to train the employees in " +
     "different museums in the techniques they should use for labelling ancient objects without damaging them.{{end}}\n{{time}}76.46/78.49{{end}}\n{{raw}} Some of them are really fragile.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}78.59/85.08{{end}}\n{{raw}}**Tutor**: OK. So in your report you go through the main stages in making the film.{{end}}\n{{time}}" +

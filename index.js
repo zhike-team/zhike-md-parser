@@ -11,7 +11,6 @@
 // Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
 
 // (function (expose) {
-var config = {};
 /**
  *  class Markdown
  *
@@ -89,6 +88,7 @@ expose$1.prototype.parse = function (source, dialect) {
  **/
 expose$1.prototype.toHTML = function toHTML(source, dialect, options) {
 	options = options || {};
+	let config = this.config || {};
 	//TODO:之前是在这里做数学表达式的处理，效果能出来，但是数学表达式的其他效果没有，比如右击菜单等等，所以放到了预览插件里做处理
 	//var mathML = MathJax.HTML.Element('div', {}, [source]);
 	//MathJax.Hub.Queue(
@@ -103,7 +103,7 @@ expose$1.prototype.toHTML = function toHTML(source, dialect, options) {
 
 	var src_ret = source.replace(/\\\$/g, '$$$$ $ $$$$');
 
-	var input = expose$1.prototype.toHTMLTree(src_ret, dialect, options);
+	var input = expose$1.prototype.toHTMLTree(src_ret, dialect, options, config);
 
 	src_ret = expose$1.prototype.renderJsonML(input);
 
@@ -124,10 +124,9 @@ expose$1.prototype.toHTML = function toHTML(source, dialect, options) {
  *  to this function, it is first parsed into a markdown tree by calling
  *  [[parse]].
  **/
-expose$1.prototype.toHTMLTree = function toHTMLTree(input, dialect, options) {
+expose$1.prototype.toHTMLTree = function toHTMLTree(input, dialect, options, config) {
 	// convert string input to an MD tree
 	if (typeof input === "string") input = this.parse(input, dialect);
-
 	// Now convert the MD tree to an HTML tree
 
 	// remove references from the tree
@@ -138,7 +137,7 @@ expose$1.prototype.toHTMLTree = function toHTMLTree(input, dialect, options) {
 		refs = attrs.references;
 	}
 
-	var html = convert_tree_to_html(input, refs, options);
+	var html = convert_tree_to_html(input, refs, options, config);
 	merge_text_nodes(html);
 	return html;
 };
@@ -1620,10 +1619,10 @@ function render_tree(jsonml) {
 }
 
 //html 标签转换
-function convert_tree_to_html(tree, references, options) {
+function convert_tree_to_html(tree, references, options, config) {
 	var i;
 	options = options || {};
-
+	config = config || {};
 	// shallow clone
 	var jsonml = tree.slice(0);
 
@@ -1837,7 +1836,7 @@ function convert_tree_to_html(tree, references, options) {
 	}
 
 	for (; i < jsonml.length; ++i) {
-		jsonml[i] = convert_tree_to_html(jsonml[i], references, options);
+		jsonml[i] = convert_tree_to_html(jsonml[i], references, options, config);
 	}
 
 	return jsonml;
@@ -1876,10 +1875,11 @@ function merge_text_nodes(jsonml) {
  */
 let Markdown = new expose$1();
 
-function MDParser() {
+function MDParser(opts) {
 	this.mdArr = [];
 	this.tmpArr = [];
 	this.openSymbol = [];
+	this.config = opts ? opts : {};
 }
 
 MDParser.prototype = {
@@ -1887,6 +1887,7 @@ MDParser.prototype = {
 		this.mdArr = [];
 		this.tmpArr = [];
 		this.openSymbol = [];
+		Markdown.config = this.config;
 	},
 
 	parse: function (mdStr, isCombine, isToHtml) {
@@ -1911,6 +1912,7 @@ MDParser.prototype = {
 		let strResult = mdStr.match(symbolIndex);
 		if (!strResult) {
 			if (mdStr.trim()) {
+				mdStr = this.isToHtml ? Markdown.toHTML(mdStr) : mdStr;
 				this.mdArr.push({raw: mdStr});
 			}
 			return;
