@@ -12,5 +12,9 @@
     "url": "git@github.com:sulv/zhikemd-parser.git"
   },
   "author": "sulv",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "describe": "^1.2.0"
+  }
 }

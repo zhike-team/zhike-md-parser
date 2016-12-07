@@ -3,8 +3,6 @@
  */
 'use strict'
 let MDParser = require('../index');
-
-
 let str = "{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tutor and a student discussing a project the student is working on.__{{end}}\n{{time}}6.01/10.26{{end}}\n{{raw}} __First, you have some time to look at Questions 21 to 27.__{{end}}\n{{end}}\n{{paragraph}}\n{{time}}50.33/58.81{{end}}\n{{raw}}**Tutor**: Right Stewart," +
 	" well I've read your draft report on your work placement at the Central Museum Association.{{end}}\n{{time}}59.37/65.33{{end}}\n{{raw}} Sounds as if you had an interesting time. So you ended up making a film for them?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}65.37/76.03{{end}}\n{{raw}}**Stewart**: Yeah. It was a film to train the employees in " +
 	"different museums in the techniques they should use for labelling ancient objects without damaging them.{{end}}\n{{time}}76.46/78.49{{end}}\n{{raw}} Some of them are really fragile.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}78.59/85.08{{end}}\n{{raw}}**Tutor**: OK. So in your report you go through the main stages in making the film.{{end}}\n{{time}}" +
@@ -31,6 +29,18 @@ let str = "{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tut
 	" benefits?{{end}}\n{{end}}\n{{paragraph}}\n{{time}}395.25/401.35{{end}}\n{{raw}}**Stewart**: Well, I don't think they'd really thought out what they'd do with the film once it was made.{{end}}\n{{time}}401.88/410.37{{end}}\n{{raw}} I made quite a few suggestions for the distribution - other people we could send it to as well as museum staff.{{end}}\n{{end}}\n{{paragraph}}\n{{time}}" +
 	"410.49/419.18{{end}}\n{{raw}}**Tutor**: Yes, they mentioned that. OK, good, well it sounds like they certainly...{{end}}\n{{end}}\n{{paragraph}}\n{{time}}419.18/421.16{{end}}\n{{raw}}__That is the end of Section 3.__{{end}}\n{{time}}421.77/424.54{{end}}\n{{raw}}__ You now have half a minute to check your answers.__{{end}}\n{{end}}";
 let mdParser = new MDParser();
-// str  = 'sss{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{end}}';
-let ret = mdParser.parse(str, false, true);
-console.log(ret);
+let should  = require('chai').should();
+let expect = require('chai').expect;
+
+describe('mdparse.array', function () {
+	it('should return a combine raw', function () {
+		let ret = mdParser.parse(str, true, true);
+		ret.should.have.property('raw');
+	});
+	it('should return an array', function () {
+		let ret = mdParser.parse(str, false, true);
+		ret.forEach(function(r){
+			r.should.have.property('raw');
+		})
+	})
+})

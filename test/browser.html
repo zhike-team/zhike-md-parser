@@ -32,7 +32,6 @@
 </div>
 <div class="control">
   <button id="convertToMd">TOMD</button>
-  <button id="combine">COMBINE</button>
   <button id="convertToHTML">TOHTML</button>
 </div>
 <div class="show">
@@ -93,6 +92,7 @@
   });
 
   document.querySelector('#convertToHTML').addEventListener('click', function (e) {
+    str = document.querySelector('[name=input-str]').value;
     let ret = parser.parse(str, false, true);
     let pDiv = document.getElementsByClassName('show')[0];
     while (pDiv.hasChildNodes()){
