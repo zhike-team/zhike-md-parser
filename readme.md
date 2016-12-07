@@ -22,9 +22,8 @@ let mdArray = mdParser.parse(str, true, true);
     trans: '' } ]
 
 ```
-
+## test in browser 
 ```
-test in browser 
 cd zhikemd-parser 
 npm i 
 node test/server
