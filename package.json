@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:sulv/zhikemd-parser.git"
+    "url": "git@github.com:zhike-team/zhike-md-parser.git"
   },
   "author": "sulv",
   "license": "ISC",

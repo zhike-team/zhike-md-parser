@@ -2,11 +2,12 @@
 
 markdown自定义标签及规则参考产品整理的文件
 
-## Demo test in node
+## Demo 
+###test in node
 
 ```js
 
-const MDParser = require('zhikemd-parser');
+const MDParser = require('zhike-md-parser');
 const mdParser = new MDParser({cdnCommon: '//xxx.xxx.com'});
 let str = '{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tutor and a student{{end}}'
  + '{{raw}}__You will hear a tutor and a student{{end}}{{trans}}{{end}}{{raw}}__You will hear a tutor and a student{{end}}{{end}}';
@@ -14,7 +15,7 @@ let mdArray = mdParser.parse(str, true, true);
 
 ```
 
-## result 
+### result 
 ```json
 [ { start: 0.34,
     end: 5.17,
@@ -22,7 +23,7 @@ let mdArray = mdParser.parse(str, true, true);
     trans: '' } ]
 
 ```
-## test in browser 
+### test in browser 
 ```
 cd zhikemd-parser 
 npm i 
