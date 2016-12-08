@@ -10,14 +10,14 @@ markdown自定义标签及规则参考产品整理的文件
 const MDParser = require('zhike-md-parser');
 const mdParser = new MDParser({cdnCommon: '//xxx.xxx.com'});
 let str = '{{paragraph}}\n{{time}}0.34/5.17{{end}}\n{{raw}}__You will hear a tutor and a student{{end}}'
- + '{{raw}}__You will hear a tutor and a student{{end}}{{trans}}{{end}}{{raw}}__You will hear a tutor and a student{{end}}{{end}}';
-let mdArray = mdParser.parse(str, true, true);
+	+ '{{raw}}__You will hear a tutor and a student{{end}}{{trans}}{{end}}{{raw}}__You will hear a tutor and a student{{end}}{{end}}';
+let mdRet = mdParser.parse(str, true, true);
 
 result:
-[ { start: 0.34,
-    end: 5.17,
-    raw: '__You will hear a tutor and a student',
-    trans: '' } ]
+{ start: 0.34,
+  end: 5.17,
+  raw: '<p><p><em>You will hear a tutor and a student</em>You will hear a tutor and a student__You will hear a tutor and a student</p></p>',
+  trans: '' }
 ```
 
 ### use browser 
