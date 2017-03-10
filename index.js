@@ -1066,7 +1066,8 @@ Markdown$1.dialects.Gruber.inline = {//TODO:扩展时需要更改的地方
 		} else if ((m = text.match(/^<(?:underline)(?:[ ]*?)\/>/) ) != null || (m = text.match(/^<\/(?:underline)(?:[ ]*?)>/) ) != null) {
 			return [m[0].length, ["blank", {
 				type: 'text',
-				class: 'underline-blank'
+				class: 'underline-blank',
+				disabled: true
 			}]];
 		}
 
