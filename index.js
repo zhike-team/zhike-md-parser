@@ -2014,7 +2014,7 @@ MDParser.prototype = {
 			raw += m.raw || '';
 			trans += m.trans || '';
 		});
-		raw = this.isToHtml ? Markdown.toHTML(raw) : raw;
+
 		return {start, end, raw, trans};
 	}
 };
