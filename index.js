@@ -1067,7 +1067,7 @@ Markdown$1.dialects.Gruber.inline = {//TODO:扩展时需要更改的地方
 			return [m[0].length, ["blank", {
 				type: 'text',
 				class: 'underline-blank',
-				disabled: true
+				disabled: true  
 			}]];
 		}
 
@@ -1931,10 +1931,11 @@ MDParser.prototype = {
 			let keyWord = this.openSymbol.pop();			                       //标签出栈
 			if (keyWord === 'paragraph' && this.openSymbol.length === 0) { 	 //每次paragraph出栈时 openSymbol必然为空
 				this.paragraphParser();
-			} else if (['time', 'raw', 'trans'].indexOf(keyWord) > -1) {        //raw, time, end 标签
+			} else if (['time', 'raw', 'trans', 'role'].indexOf(keyWord) > -1) {        //raw, time, end 标签
 				let lastItem = this.tmpArr[this.tmpArr.length - 1];
-				if (lastItem && lastItem.key === 'time' && keyWord !== 'raw') {
-					throw new Error('time标签之后必须要有raw标签');
+				if (lastItem && lastItem.key === 'time' && keyWord !== 'raw' && keyWord !== 'role') {
+					console.log(lastItem, keyWord);
+					throw new Error('time标签之后必须要有raw或role标签');
 				}
 				if (keyWord === 'trans' && lastItem && lastItem.key !== 'raw') {
 					throw new Error('trans标签之前必须要有raw标签');
@@ -1961,7 +1962,7 @@ MDParser.prototype = {
 	//段落解析合并
 	paragraphParser: function () {
 		let rawArray = this.tmpArr;
-		let start = 0, end = 0, raw = '', trans = '';
+		let start = 0, end = 0, raw = '', trans = '', role = '';
 		for (let i = 0; i < rawArray.length; i++) {
 			if (rawArray[i].key === 'time') {
 				let timeObj = this.timeParser(rawArray[i].text);
@@ -1972,11 +1973,13 @@ MDParser.prototype = {
 				raw += rawArray[i].text;
 			} else if (rawArray[i].key === 'trans') {
 				trans += rawArray[i].text;
+			} else if (rawArray[i].key === 'role') {
+				role += rawArray[i].text;
 			}
 		}
 		this.tmpArr = [];
 		raw = this.isToHtml ? Markdown.toHTML(raw) : raw;
-		this.mdArr.push({start, end, raw, trans});
+		this.mdArr.push({start, end, raw, trans, role});
 	},
 
 	//单独raw解析 逐条
@@ -1998,6 +2001,12 @@ MDParser.prototype = {
 				rawObj.trans = this.isToHtml ? Markdown.toHTML(rawArray[i].text) : rawArray[i].text;
 				this.mdArr.push(rawObj);
 				rawObj = {};
+			} else if (rawArray[i].key === 'role') {
+				if (rawObj.role) {
+					this.mdArr.push(rawObj);
+					rawObj = {};
+				}
+				rawObj.role = this.isToHtml ? Markdown.toHTML(rawArray[i].text) : rawArray[i].text;
 			}
 			if (i === rawArray.length - 1) {
 				this.mdArr.push(rawObj);
@@ -2007,15 +2016,16 @@ MDParser.prototype = {
 
 	//合并raw
 	rawCombine: function (mdArr) {
-		let start, end, raw = '', trans = '';
+		let start, end, raw = '', trans = '', role = '';
 		mdArr.forEach(function (m) {
 			start = start ? m.start - start > 0 ? start : m.start : m.start;
 			end = end ? m.end - end > 0 ? m.end : end : m.end;
 			raw += m.raw || '';
 			trans += m.trans || '';
+			role += m.role || '';
 		});
-
-		return {start, end, raw, trans};
+		raw = this.isToHtml ? Markdown.toHTML(raw) : raw;
+		return {start, end, raw, trans, role};
 	}
 };
 
